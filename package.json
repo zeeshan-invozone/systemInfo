@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "test": "lint-staged"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
+    "lint-staged": "^10.5.3",
     "os": "^0.1.1",
     "path": "^0.12.7",
     "prettier": "^2.2.1"
@@ -21,5 +23,16 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "husky": "^4.3.7"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,html,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
   }
 }
