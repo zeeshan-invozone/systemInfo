@@ -1,23 +1,23 @@
-const dotEnv = require('dotenv');
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
+const dotEnv = require("dotenv");
+const fs = require("fs");
+const path = require("path");
+const os = require("os");
 
 dotEnv.config();
 const dirPath = path.join(os.homedir(), process.env.FILENAME);
 const writeFile = async (filename, data) => {
   try {
-    await fs.open(filename, 'r', (err) => {
+    await fs.open(filename, "r", (err) => {
       if (err) {
         fs.writeFile(filename, data, (error) => {
           if (error) {
-            console.log('err', error);
+            console.log("err", error);
           } else {
-            console.log('file created successfully');
+            console.log("file created successfully");
           }
         });
       } else {
-        console.log('file aleardy exist');
+        console.log("file aleardy exist");
       }
     });
   } catch (error) {

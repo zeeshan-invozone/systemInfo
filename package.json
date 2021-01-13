@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "test": "lint-staged"
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -15,18 +16,18 @@
     "fs": "0.0.1-security",
     "lint-staged": "^10.5.3",
     "os": "^0.1.1",
-    "path": "^0.12.7",
-    "prettier": "^2.2.1"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "husky": "^4.3.7"
+    "husky": "^4.3.7",
+    "prettier": "^2.2.1"
   },
   "husky": {
     "hooks": {
-      "precommit": "npm test"
+      "pre-commit": "prettier --write . && git add -A ."
     }
   },
   "lint-staged": {
