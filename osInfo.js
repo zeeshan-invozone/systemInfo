@@ -6,31 +6,20 @@ const os = require('os');
 dotEnv.config();
 const dirPath = path.join(os.homedir(), process.env.FILENAME);
 
-fs.access(dirPath, (err) => {
-  if (err) {
-    console.log('file not exist');
-  } else {
-    console.log('file already exist');
-  }
-});
 const writeFile = async (filename, data) => {
-  try {
-    await fs.open(filename, 'r', (err) => {
-      if (err) {
-        fs.writeFile(filename, data, (error) => {
-          if (error) {
-            console.log('err', error);
-          } else {
-            console.log('file created successfully');
-          }
-        });
-      } else {
-        console.log('file aleardy exist');
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  fs.access(filename, async (err) => {
+    if (err) {
+      fs.writeFile(filename, data, (error) => {
+        if (error) {
+          console.log('err', error);
+        } else {
+          console.log('file created successfully');
+        }
+      });
+    } else {
+      console.log('file already exist');
+    }
+  });
 };
 const systemInfo = {
   Platform: os.platform(),
