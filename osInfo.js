@@ -7,7 +7,8 @@ dotEnv.config();
 const dirPath = path.join(os.homedir(), process.env.FILENAME);
 
 const writeFile = async (filename, data) => {
-  fs.access(filename, async (err) => {
+  await fs.access(filename, (err) => {
+    // check if file !exist then create new one
     if (err) {
       fs.writeFile(filename, data, (error) => {
         if (error) {
